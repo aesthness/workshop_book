@@ -6,6 +6,118 @@
   <title>스크린과 종이 사이</title>
   <link rel="icon" href="icon.svg" type="image/svg">
   <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+    
+    /* 상단 네비게이션 바 */
+    .apple-navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(0, 0, 0, 1);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      flex-wrap: nowrap;
+    }
+    
+    .NavLogo {
+      padding: 20px;
+      width: 24px;
+      display: flex;
+      align-items: center;
+    }
+    .apple-logo {
+      white-space: nowrap;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    
+    /* 햄버거 버튼 */
+    .apple-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 20px;
+      margin-left: auto;
+    }
+    
+    .apple-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 1px;
+      transition: 0.3s ease;
+    }
+    
+    /* 사이드바 */
+    .apple-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #fff;
+      transition: right 0.4s ease;
+      padding: 60px 20px 20px;
+      z-index: 1200;
+      box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .apple-sidebar.active {
+      right: 0;
+    }
+    
+    /* 닫기 버튼 */
+    .apple-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #000;
+      cursor: pointer;
+    }
+    
+    /* 메뉴 항목 */
+    .apple-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      font-size: 17px;
+      color: #000;
+    }
+    
+    .apple-menu a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 400;
+      transition: 0.2s;
+    }
+    
+    .apple-menu a:hover {
+      color: #0071e3; /* Apple Blue */
+    }
+    
+    /* 콘텐츠 마진 보정 */
+    .wrap {
+      margin-top: 60px;
+      padding: 20px;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -19,9 +131,9 @@
       align-items: center;
     }
     .fliphtml5-embed-container {
-      margin-top: 50px;
-      width: 1600px;
-      height: 1100px;
+      margin-top: 80px;
+      width: 100%;
+      height: 100%;
       max-width: 95vw;
       max-height: 90vh;
       position: relative;
@@ -57,6 +169,27 @@
   </style>
 </head>
 <body>
+  <header class="apple-navbar">
+      <div class="NavLogo">
+        <img
+          src="/workshop/workshop_detail/IconNav.svg"
+          alt="Ink And Paper Logo"
+        />
+        <div class="apple-logo">Ink And Paper</div>
+      </div>
+      <button class="apple-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <aside class="apple-sidebar" id="sidebar">
+      <button class="apple-close" id="closeBtn">×</button>
+      <nav class="apple-menu">
+        <a href="https://aesthness.github.io/workshop_book/">홈</a>
+        <a href="#">폰트 비교하기</a>
+        <a href="#">폰트 실험실</a>
+      </nav>
+    </aside>
   <div class="fliphtml5-embed-container">
     <iframe 
       class="fliphtml5-iframe"
@@ -68,5 +201,25 @@
       allowfullscreen="true">
     </iframe>
   </div>
+  <script>
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+
+      // (선택) 외부 클릭 시 닫기
+      document.addEventListener("click", (e) => {
+        if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+          sidebar.classList.remove("active");
+        }
+      });
+  </script>
 </body>
 </html>
