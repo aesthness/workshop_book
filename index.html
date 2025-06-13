@@ -153,6 +153,38 @@
       background: #222;
       display: block;
     }
+
+    header {
+      font-family: 'Georgia', serif;
+      position: fixed; /* 고정 위치 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: rgb(0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* 필요에 따라 */
+      padding: 0 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 선택 */
+      z-index: 1000;
+    }
+    
+    .mainNav {
+      padding-right: 35px;
+    }
+    
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
     @media (max-width: 1300px) {
       .fliphtml5-embed-container {
         width: 98vw;
@@ -169,27 +201,15 @@
   </style>
 </head>
 <body>
-  <header class="apple-navbar">
-      <div class="NavLogo">
-        <img
-          src="IconNav.svg"
-          alt="Ink And Paper Logo"
-        />
-        <div class="apple-logo">스크린과 종이 사이</div>
-      </div>
-      <button class="apple-hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
-
-    <aside class="apple-sidebar" id="sidebar">
-      <button class="apple-close" id="closeBtn">×</button>
-      <nav class="apple-menu">
-        <a href="https://aesthness.github.io/workshop_book/">홈</a>
+  <header>
+      <h2><a href="https://aesthness.github.io/workshop_home/">스크린과 종이 사이</a></h2>
+      <nav class="mainNav">
+        <a href="https://aesthness.github.io/workshop_home/">홈</a>
         <a href="https://aesthness.github.io/workshop_compare/">폰트 비교하기</a>
         <a href="https://aesthness.github.io/workshop_detail/">폰트 실험실</a>
+        <a href="https://aesthness.github.io/workshop_home/#book">책 보기</a>
       </nav>
-    </aside>
+    </header>
   <div class="fliphtml5-embed-container">
     <iframe 
       class="fliphtml5-iframe"
